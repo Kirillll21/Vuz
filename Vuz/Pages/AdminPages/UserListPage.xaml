@@ -23,7 +23,7 @@
                     />
             <Button
                  Content="Назад"
-                 Name="BtnGoBack"
+                 x:Name="BtnGoBack"
                  Click="btnGoBack_Click" Width="135" Height="35"
                  />
         </StackPanel>
@@ -33,9 +33,7 @@
                AutoGenerateColumns="False"
                IsReadOnly="true">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Изображение"
-                                 Binding="{Binding image}"
-                                 Width="*"></DataGridTextColumn>       
+                     
                 <DataGridTextColumn Header="Логин"
                                  Binding="{Binding Login}"
                                  Width="*"></DataGridTextColumn>

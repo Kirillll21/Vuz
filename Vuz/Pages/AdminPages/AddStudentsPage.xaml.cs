@@ -64,7 +64,8 @@ namespace Vuz.Pages.AdminPages
                             StipendSize = Int32.Parse(txbStipendSize.Text),
                             StipendReason = txbStipendReason.Text,
                             GroupId = Int32.Parse(CmbFilterGroup.Text),
-                            GenderId = Int32.Parse(CmbFilterGender.Text)
+                            GenderId = Int32.Parse(CmbFilterGender.Text),
+                            FacultyId = Int32.Parse(CmbChooseFaculty.Text),
 
                         };
 
@@ -107,8 +108,14 @@ namespace Vuz.Pages.AdminPages
             CmbFilterGender.ItemsSource = DbConnect.entObj.Genders.ToList();
             CmbFilterGender.DisplayMemberPath = "Id";
 
+            CmbChooseFaculty.ItemsSource = DbConnect.entObj.Faculties.ToList();
+            CmbChooseFaculty.DisplayMemberPath = "Id";
+
+
+
             CmbFilterGroup.SelectedIndex = 0;
             CmbFilterGender.SelectedIndex = 0;
+
 
 
 
@@ -116,6 +123,11 @@ namespace Vuz.Pages.AdminPages
         }
 
         private void CmbFilterGroup_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void CmbChooseFaculty_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

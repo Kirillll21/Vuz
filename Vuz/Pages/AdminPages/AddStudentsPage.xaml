@@ -136,11 +136,24 @@
                 <ComboBox SelectionChanged="CmbFilterGender_SelectionChanged"
               Name="CmbFilterGender"
               Height="30"
-              Width="200">
+              Width="200">               
+                
 
                 </ComboBox>
             </StackPanel>
-            
+            <StackPanel Orientation="Vertical"
+Margin="0,10,0,0">
+
+                <TextBlock Text="Выберите факультет"
+                            Height="20"/>
+                <ComboBox SelectionChanged="CmbChooseFaculty_SelectionChanged"
+                      Name="CmbChooseFaculty"
+                      Height="30"
+                      Width="200">
+
+                </ComboBox>
+            </StackPanel>
+
         </StackPanel>
         
         <StackPanel Grid.Row="2" Height="30"
