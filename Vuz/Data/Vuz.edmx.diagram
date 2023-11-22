@@ -33,6 +33,7 @@
         <AssociationConnector Association="VuzModel.FK_Users_Roles" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_ScientificDirections_Teachers" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_Teachers_ScientificTopics" ManuallyRouted="false" />
+        <AssociationConnector Association="VuzModel.FK_Students_Faculty" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

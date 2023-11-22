@@ -19,6 +19,7 @@ namespace Vuz.Data
         {
             this.Groups = new HashSet<Group>();
             this.ScientificDirections = new HashSet<ScientificDirection>();
+            this.Students = new HashSet<Student>();
         }
     
         public int Id { get; set; }
@@ -30,5 +31,7 @@ namespace Vuz.Data
         public virtual ICollection<Group> Groups { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ScientificDirection> ScientificDirections { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Students { get; set; }
     }
 }

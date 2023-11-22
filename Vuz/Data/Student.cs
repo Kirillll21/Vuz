@@ -22,8 +22,10 @@ namespace Vuz.Data
         public int Age { get; set; }
         public string StipendReason { get; set; }
         public Nullable<int> StipendSize { get; set; }
+        public Nullable<int> FacultyId { get; set; }
     
         public virtual Gender Gender { get; set; }
         public virtual Group Group { get; set; }
+        public virtual Faculty Faculty { get; set; }
     }
 }
