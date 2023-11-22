@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -29,12 +30,37 @@ namespace Vuz.Pages.AdminPages.AdminListPages
 
         private void btnDelStd_Click(object sender, RoutedEventArgs e)
         {
+            var teachersForRemoving = ListTeacher.SelectedItems.Cast<Teacher>().ToList();
 
+            var cancel = System.Windows.Forms.MessageBox.Show("Вы подтверждаете удаление?",
+                            "Подтверждение",
+                            MessageBoxButtons.OKCancel);
+            if (DialogResult.Cancel == cancel)
+            {
+                FrameApp.frmObj.Navigate(new TeacherListPage());
+            }
+            else
+            {
+
+                try
+                {
+                    DbConnect.entObj.Teachers.RemoveRange(teachersForRemoving);
+                    DbConnect.entObj.SaveChanges();
+                    System.Windows.MessageBox.Show("Данные удалены");
+
+                    ListTeacher.ItemsSource = DbConnect.entObj.Teachers.ToList();
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show(ex.Message.ToString());
+
+                }
+            }
         }
 
         private void btnAddStd_Click(object sender, RoutedEventArgs e)
         {
-
+            FrameApp.frmObj.Navigate(new AddTeacherPage());
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -53,7 +79,7 @@ namespace Vuz.Pages.AdminPages.AdminListPages
             catch (Exception except)
             {
 
-                MessageBox.Show(except.Message, "Что-то пошло не так!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                System.Windows.MessageBox.Show(except.Message, "Что-то пошло не так!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
