@@ -138,18 +138,7 @@
                     </ComboBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical"
-                    Margin="0,10,0,0">
-
-                    <TextBlock Text="Выберите научную тему"
-                               Height="20"/>
-                    <ComboBox SelectionChanged="ScTopics_SelectionChanged"
-                              Name="CmbScTopics"
-                              Height="30"
-                              Width="200">
-
-                    </ComboBox>
-                </StackPanel>
+               
                 
                 <StackPanel Orientation="Vertical"
                             Margin="0,10,0,0">

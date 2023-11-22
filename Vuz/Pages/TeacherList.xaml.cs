@@ -116,7 +116,10 @@ namespace Vuz.Pages
 
         private void CmbFilter_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-
+            var select = CmbFilter.SelectedItem as AcademicRank;
+            var allItems = DbConnect.entObj.Teachers.ToList();
+            var items = (select != null) ? allItems.Where(x => x.AcademicRanksId == select.Id) : allItems;
+            ListTeacher.ItemsSource = items;
         }
 
         private void CmbSort_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
