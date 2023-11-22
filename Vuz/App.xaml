@@ -4,18 +4,26 @@
              xmlns:local="clr-namespace:Vuz"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style TargetType="Button">
+            
+            <Setter Property="FontFamily" Value="Candara"/>
+        </Style>
+        <Style TargetType="TextBox">
+            
+            <Setter Property="FontFamily" Value="Candara"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            
+            <Setter Property="FontFamily" Value="Candara"/>
+        </Style>
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="FontFamily" Value="Arial"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontFamily" Value="Candara"/>
+
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Candara"/>
         </Style>
 
-        <Style TargetType="TextBlock" x:Key="HeaderStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-        </Style>
-        
-        
+
     </Application.Resources>
 </Application>

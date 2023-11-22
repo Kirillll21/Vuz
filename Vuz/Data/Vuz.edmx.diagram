@@ -4,18 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="29d9cbd004be4010bd747edc350644bc" Name="Diagram1">
-        <EntityTypeShape EntityType="VuzModel.AcademicRank" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.Department" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.Faculty" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.Group" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.PostGraduate" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.Role" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.ScientificDirection" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.ScientificTopic" Width="1.5" PointX="6" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.Student" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VuzModel.Teacher" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+      <Diagram DiagramId="ccbb7878e08b4b27a8e9f3f7e3f4601c" Name="Diagram1">
+        <EntityTypeShape EntityType="VuzModel.AcademicRank" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Department" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Faculty" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Gender" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Group" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.PostGraduate" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Role" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.ScientificDirection" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.ScientificTopic" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Student" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.sysdiagram" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VuzModel.Teacher" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VuzModel.User" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="VuzModel.FK_Teachers_AcademicRanks" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_Faculty_Department" ManuallyRouted="false" />
@@ -25,10 +27,12 @@
         <AssociationConnector Association="VuzModel.FK_Teachers_Department" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_Groups_Faculty" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_ScientificDirections_Faculty" ManuallyRouted="false" />
+        <AssociationConnector Association="VuzModel.FK_Students_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="VuzModel.FK_Teachers_Gender" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_Students_Groups" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_Users_Roles" ManuallyRouted="false" />
         <AssociationConnector Association="VuzModel.FK_ScientificDirections_Teachers" ManuallyRouted="false" />
-        <AssociationConnector Association="VuzModel.FK_ScientificTopics_Teachers" ManuallyRouted="false" />
+        <AssociationConnector Association="VuzModel.FK_Teachers_ScientificTopics" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

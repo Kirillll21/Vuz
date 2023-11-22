@@ -18,6 +18,7 @@ namespace Vuz.Data
         public string Login { get; set; }
         public string Password { get; set; }
         public int Id_Role { get; set; }
+        public string image { get; set; }
     
         public virtual Role Role { get; set; }
     }

@@ -13,10 +13,10 @@ namespace Vuz.Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VuzEntities : DbContext
+    public partial class VuzEntities3 : DbContext
     {
-        public VuzEntities()
-            : base("name=VuzEntities")
+        public VuzEntities3()
+            : base("name=VuzEntities3")
         {
         }
     
@@ -26,8 +26,10 @@ namespace Vuz.Data
         }
     
         public virtual DbSet<AcademicRank> AcademicRanks { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Faculty> Faculties { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<PostGraduate> PostGraduates { get; set; }
         public virtual DbSet<Role> Roles { get; set; }

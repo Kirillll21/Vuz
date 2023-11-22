@@ -46,6 +46,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -76,11 +77,17 @@
     <Compile Include="Data\AcademicRank.cs">
       <DependentUpon>Vuz.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Category.cs">
+      <DependentUpon>Vuz.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\DbConnect.cs" />
     <Compile Include="Data\Department.cs">
       <DependentUpon>Vuz.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Faculty.cs">
+      <DependentUpon>Vuz.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Gender.cs">
       <DependentUpon>Vuz.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Group.cs">
@@ -129,6 +136,34 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AdminPages\AddStudentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\AddTeacherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\AddUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\AdminListPages\StudentsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\AdminListPages\TeacherListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\AdminMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AdminPages\UserListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AuthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,13 +172,48 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TeacherList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\AdminPages\AddStudentsPage.xaml.cs">
+      <DependentUpon>AddStudentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\AddTeacherPage.xaml.cs">
+      <DependentUpon>AddTeacherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\AddUsers.xaml.cs">
+      <DependentUpon>AddUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\AdminListPages\StudentsListPage.xaml.cs">
+      <DependentUpon>StudentsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\AdminListPages\TeacherListPage.xaml.cs">
+      <DependentUpon>TeacherListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\AdminMenuPage.xaml.cs">
+      <DependentUpon>AdminMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminPages\UserListPage.xaml.cs">
+      <DependentUpon>UserListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Department\ListTeachersPage.xaml.cs">
       <DependentUpon>ListTeachersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TeacherList.xaml.cs">
+      <DependentUpon>TeacherList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -179,19 +249,23 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Data\Vuz.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Vuz.Context.cs</LastGenOutput>
       <DependentUpon>Vuz.edmx</DependentUpon>
+      <LastGenOutput>Vuz.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Data\Vuz.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Vuz.edmx</DependentUpon>
       <LastGenOutput>Vuz.cs</LastGenOutput>
     </Content>
+    <Resource Include="Pages\AdminPages\picture.png" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Folder Include="Pages\AdminPages\ImageUsers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -54,7 +54,14 @@ namespace Vuz.Pages
                                             "Успешный вход",
                                             MessageBoxButton.OK,
                                             MessageBoxImage.Information);
-                            FrameApp.frmObj.Navigate(new ListTeachersPage());
+                            FrameApp.frmObj.Navigate(new AdminMenuPage());
+                            break;
+                        case 2:
+                            MessageBox.Show("Добро пожаловать! ",
+                                            "Успешный вход",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Information);
+                            FrameApp.frmObj.Navigate(new MenuPage());
                             break;
                     }
                 }

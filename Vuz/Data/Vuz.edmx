@@ -12,6 +12,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="Id" />
@@ -27,12 +34,19 @@
           <Property Name="FacultyName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="Groups">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="FacultyId" Type="int" Nullable="false" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
         </EntityType>
@@ -68,16 +82,20 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
-          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="int" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="Children" Type="int" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="StipendReason" Type="nvarchar(max)" />
+          <Property Name="StipendSize" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -94,11 +112,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="DepartmentId" Type="int" Nullable="false" />
           <Property Name="AcademicRanksId" Type="int" Nullable="false" />
+          <Property Name="CountChildren" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="Aspirant" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ScWordks" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ScTopicsId" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -108,6 +131,7 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Id_Role" Type="int" Nullable="false" />
+          <Property Name="image" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Faculty_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="1" />
@@ -193,15 +217,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ScientificTopics_Teachers">
-          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
-          <End Role="ScientificTopics" Type="Self.ScientificTopics" Multiplicity="*" />
+        <Association Name="FK_Students_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teachers">
+            <Principal Role="Gender">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ScientificTopics">
-              <PropertyRef Name="TeacherId" />
+            <Dependent Role="Students">
+              <PropertyRef Name="GenderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -241,6 +265,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Teachers_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_ScientificTopics">
+          <End Role="ScientificTopics" Type="Self.ScientificTopics" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ScientificTopics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="ScTopicsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_Roles">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -255,8 +303,10 @@
         </Association>
         <EntityContainer Name="VuzModelStoreContainer">
           <EntitySet Name="AcademicRanks" EntityType="Self.AcademicRanks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faculty" EntityType="Self.Faculty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PostGraduate" EntityType="Self.PostGraduate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
@@ -294,9 +344,9 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="ScientificTopics" EntitySet="ScientificTopics" />
           </AssociationSet>
-          <AssociationSet Name="FK_ScientificTopics_Teachers" Association="Self.FK_ScientificTopics_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
-            <End Role="ScientificTopics" EntitySet="ScientificTopics" />
+          <AssociationSet Name="FK_Students_Gender" Association="Self.FK_Students_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Students" EntitySet="Students" />
           </AssociationSet>
           <AssociationSet Name="FK_Students_Groups" Association="Self.FK_Students_Groups">
             <End Role="Groups" EntitySet="Groups" />
@@ -308,6 +358,14 @@
           </AssociationSet>
           <AssociationSet Name="FK_Teachers_Department" Association="Self.FK_Teachers_Department">
             <End Role="Department" EntitySet="Department" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Gender" Association="Self.FK_Teachers_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_ScientificTopics" Association="Self.FK_Teachers_ScientificTopics">
+            <End Role="ScientificTopics" EntitySet="ScientificTopics" />
             <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
@@ -327,6 +385,13 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_AcademicRanks" FromRole="AcademicRanks" ToRole="Teachers" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -351,12 +416,21 @@
           <NavigationProperty Name="Groups" Relationship="Self.FK_Groups_Faculty" FromRole="Faculty" ToRole="Groups" />
           <NavigationProperty Name="ScientificDirections" Relationship="Self.FK_ScientificDirections_Faculty" FromRole="Faculty" ToRole="ScientificDirections" />
         </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Gender" FromRole="Gender" ToRole="Students" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_Gender" FromRole="Gender" ToRole="Teachers" />
+        </EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FacultyId" Type="Int32" Nullable="false" />
           <Property Name="DepartmentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Groups_Department" FromRole="Groups" ToRole="Department" />
@@ -399,18 +473,23 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DepartmentId" Type="Int32" Nullable="false" />
-          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" />
           <NavigationProperty Name="Department" Relationship="Self.FK_ScientificTopics_Department" FromRole="ScientificTopics" ToRole="Department" />
-          <NavigationProperty Name="Teacher" Relationship="Self.FK_ScientificTopics_Teachers" FromRole="ScientificTopics" ToRole="Teachers" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_Teachers_ScientificTopics" FromRole="ScientificTopics" ToRole="Teachers" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="Children" Type="Int32" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="StipendReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StipendSize" Type="Int32" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Students_Gender" FromRole="Students" ToRole="Gender" />
           <NavigationProperty Name="Group" Relationship="Self.FK_Students_Groups" FromRole="Students" ToRole="Groups" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -428,15 +507,21 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIO" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="DepartmentId" Type="Int32" Nullable="false" />
           <Property Name="AcademicRanksId" Type="Int32" Nullable="false" />
+          <Property Name="CountChildren" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="Aspirant" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ScWordks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ScTopicsId" Type="Int32" />
           <NavigationProperty Name="AcademicRank" Relationship="Self.FK_Teachers_AcademicRanks" FromRole="Teachers" ToRole="AcademicRanks" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Teachers_Department" FromRole="Teachers" ToRole="Department" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Teachers_Gender" FromRole="Teachers" ToRole="Gender" />
           <NavigationProperty Name="ScientificDirections" Relationship="Self.FK_ScientificDirections_Teachers" FromRole="Teachers" ToRole="ScientificDirections" />
-          <NavigationProperty Name="ScientificTopics" Relationship="Self.FK_ScientificTopics_Teachers" FromRole="Teachers" ToRole="ScientificTopics" />
+          <NavigationProperty Name="ScientificTopic" Relationship="Self.FK_Teachers_ScientificTopics" FromRole="Teachers" ToRole="ScientificTopics" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -446,6 +531,7 @@
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Id_Role" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <Association Name="FK_Teachers_AcademicRanks">
@@ -544,6 +630,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Students_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teachers_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Teachers">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Students_Groups">
           <End Role="Groups" Type="Self.Group" Multiplicity="1" />
           <End Role="Students" Type="Self.Student" Multiplicity="*" />
@@ -580,22 +690,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ScientificTopics_Teachers">
-          <End Role="Teachers" Type="Self.Teacher" Multiplicity="1" />
-          <End Role="ScientificTopics" Type="Self.ScientificTopic" Multiplicity="*" />
+        <Association Name="FK_Teachers_ScientificTopics">
+          <End Role="ScientificTopics" Type="Self.ScientificTopic" Multiplicity="0..1" />
+          <End Role="Teachers" Type="Self.Teacher" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Teachers">
+            <Principal Role="ScientificTopics">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ScientificTopics">
-              <PropertyRef Name="TeacherId" />
+            <Dependent Role="Teachers">
+              <PropertyRef Name="ScTopicsId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VuzEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VuzEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AcademicRanks" EntityType="Self.AcademicRank" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Faculties" EntityType="Self.Faculty" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
           <EntitySet Name="Groups" EntityType="Self.Group" />
           <EntitySet Name="PostGraduates" EntityType="Self.PostGraduate" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
@@ -637,6 +749,14 @@
             <End Role="Faculty" EntitySet="Faculties" />
             <End Role="ScientificDirections" EntitySet="ScientificDirections" />
           </AssociationSet>
+          <AssociationSet Name="FK_Students_Gender" Association="Self.FK_Students_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teachers_Gender" Association="Self.FK_Teachers_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Teachers" EntitySet="Teachers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Students_Groups" Association="Self.FK_Students_Groups">
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Students" EntitySet="Students" />
@@ -649,9 +769,9 @@
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="ScientificDirections" EntitySet="ScientificDirections" />
           </AssociationSet>
-          <AssociationSet Name="FK_ScientificTopics_Teachers" Association="Self.FK_ScientificTopics_Teachers">
-            <End Role="Teachers" EntitySet="Teachers" />
+          <AssociationSet Name="FK_Teachers_ScientificTopics" Association="Self.FK_Teachers_ScientificTopics">
             <End Role="ScientificTopics" EntitySet="ScientificTopics" />
+            <End Role="Teachers" EntitySet="Teachers" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -659,10 +779,18 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="VuzModelStoreContainer" CdmEntityContainer="VuzEntities">
+        <EntityContainerMapping StorageEntityContainer="VuzModelStoreContainer" CdmEntityContainer="VuzEntities3">
           <EntitySetMapping Name="AcademicRanks">
             <EntityTypeMapping TypeName="VuzModel.AcademicRank">
               <MappingFragment StoreEntitySet="AcademicRanks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="VuzModel.Category">
+              <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
@@ -682,6 +810,14 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FacultyName" ColumnName="FacultyName" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="VuzModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -737,9 +873,13 @@
             <EntityTypeMapping TypeName="VuzModel.Student">
               <MappingFragment StoreEntitySet="Students">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Children" ColumnName="Children" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="StipendReason" ColumnName="StipendReason" />
+                <ScalarProperty Name="StipendSize" ColumnName="StipendSize" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -758,11 +898,16 @@
             <EntityTypeMapping TypeName="VuzModel.Teacher">
               <MappingFragment StoreEntitySet="Teachers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="AcademicRanksId" ColumnName="AcademicRanksId" />
+                <ScalarProperty Name="CountChildren" ColumnName="CountChildren" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Aspirant" ColumnName="Aspirant" />
+                <ScalarProperty Name="ScWordks" ColumnName="ScWordks" />
+                <ScalarProperty Name="ScTopicsId" ColumnName="ScTopicsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -773,6 +918,7 @@
                 <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Id_Role" ColumnName="Id_Role" />
+                <ScalarProperty Name="image" ColumnName="image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

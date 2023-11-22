@@ -18,21 +18,25 @@ namespace Vuz.Data
         public Teacher()
         {
             this.ScientificDirections = new HashSet<ScientificDirection>();
-            this.ScientificTopics = new HashSet<ScientificTopic>();
         }
     
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Category { get; set; }
+        public string FIO { get; set; }
+        public int CategoryId { get; set; }
         public int DepartmentId { get; set; }
         public int AcademicRanksId { get; set; }
+        public int CountChildren { get; set; }
+        public int GenderId { get; set; }
+        public int Salary { get; set; }
+        public string Aspirant { get; set; }
+        public string ScWordks { get; set; }
+        public Nullable<int> ScTopicsId { get; set; }
     
         public virtual AcademicRank AcademicRank { get; set; }
         public virtual Department Department { get; set; }
+        public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ScientificDirection> ScientificDirections { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ScientificTopic> ScientificTopics { get; set; }
+        public virtual ScientificTopic ScientificTopic { get; set; }
     }
 }

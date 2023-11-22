@@ -8,6 +8,6 @@ namespace Vuz.Data
 {
     internal class DbConnect
     {
-        public static VuzEntities entObj;
+        public static VuzEntities3 entObj;
     }
 }

@@ -10,58 +10,46 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="85"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="0"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Center">
-            <TextBlock Text="Авторизация"
-                       Style="{StaticResource HeaderStyle}"/>
+
+        <StackPanel HorizontalAlignment="Center"                     
+            Orientation="Horizontal" Margin="301,0">
+            <TextBlock Text="Авторизация" 
+               VerticalAlignment="Center"
+               FontSize="26"/>
         </StackPanel>
-            
+
         <StackPanel Orientation="Vertical"
-                    Grid.Row="1">
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top">
-                <TextBlock Text="Логин:"
-                           FontSize="25"
-                           Margin="0,0,0,0"
-                           VerticalAlignment="Center" Width="72"/>
-                <TextBox Height="35"
-                         Width="200"
-                         Margin="20,0,0,0"
-                         Name="txbLogin"/>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal"
             HorizontalAlignment="Center"
-            Margin="0,20,0,0"
-                        >
-                <TextBlock Text="Пароль:"
-               FontSize="25"
-               Margin="0,0,0,0"
-               VerticalAlignment="Center"/>
-                <PasswordBox Height="35"
-                         Width="200"
-                         Name="psbPassword"
-                         />
+            Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Логин"
+                   FontSize="16"/>
+                <TextBox Width="120"
+                 Margin="20, 0, 0, 0"
+                 Name="txbLogin"
+                 TabIndex="1"/>
             </StackPanel>
-            <Button Height="50"
-                    Margin="0,30,0,0"
-                    Width="300"
-                    Name="btnLogin"
-                    Click="btnLogin_Click"
-                    >
-                <Button.Content>
-                    <Label Content="Вход"
-                           FontSize="20"/>
-                </Button.Content>
-            </Button>
+
+            <StackPanel Orientation="Horizontal" Margin="0 , 20, 0, 0">
+                <TextBlock Text="Пароль"
+                   FontSize="16"/>
+                <PasswordBox Width="120"
+                     Margin="10, 0, 0, 0"
+                     Name="psbPassword"
+                     TabIndex="2"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
+                <Button Name="btnLogin"                        
+                Width="185"
+                Height="30"
+                Content="Войти"
+                Click="btnLogin_Click"
+                TabIndex="3"/>
+            </StackPanel>
         </StackPanel>
-        
     </Grid>
 </Page>

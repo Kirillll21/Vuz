@@ -12,20 +12,20 @@ namespace Vuz.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ScientificTopic
+    public partial class Gender
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ScientificTopic()
+        public Gender()
         {
+            this.Students = new HashSet<Student>();
             this.Teachers = new HashSet<Teacher>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int DepartmentId { get; set; }
-        public Nullable<int> TeacherId { get; set; }
     
-        public virtual Department Department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student> Students { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Teacher> Teachers { get; set; }
     }

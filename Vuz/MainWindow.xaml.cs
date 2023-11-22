@@ -30,7 +30,7 @@ namespace Vuz
 
             FrameApp.frmObj.Navigate(new AuthPage());
 
-            DbConnect.entObj = new VuzEntities();
+            DbConnect.entObj = new VuzEntities3();
         }
     }
 }

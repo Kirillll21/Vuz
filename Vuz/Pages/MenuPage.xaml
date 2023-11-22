@@ -1,0 +1,51 @@
+﻿<Page x:Class="Vuz.Pages.MenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Vuz.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MenuPage">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Right">
+            <Button Name="btnBack"                        
+                    Width="125"
+                    Height="30"
+                    Margin="0,10,10,0"
+                    Content="Назад"
+                    Click="btnBack_Click"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                VerticalAlignment="Top">
+           <TextBlock Text="Меню"
+                   VerticalAlignment="Center"
+                   FontSize="26"/>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <Button Width="180"
+                Height="50"
+                Name="btnGoStudentView"
+                Click="btnGoStudentView_Click"
+                Content="Студенты"
+                FontSize="16"
+                />
+            <Button Width="180"
+                Height="50"
+                Margin="0,30,0,0"
+                Name="btnGoTeacher"
+                Click="btnGoTeacher_Click"
+                Content="Преподаватели"
+                FontSize="16"
+                />
+
+        </StackPanel>
+    </Grid>
+</Page>

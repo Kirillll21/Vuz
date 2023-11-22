@@ -12,18 +12,9 @@ namespace Vuz.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Student
+    public partial class Category
     {
         public int Id { get; set; }
-        public string FIO { get; set; }
-        public int GroupId { get; set; }
-        public Nullable<int> Children { get; set; }
-        public int GenderId { get; set; }
-        public int Age { get; set; }
-        public string StipendReason { get; set; }
-        public Nullable<int> StipendSize { get; set; }
-    
-        public virtual Gender Gender { get; set; }
-        public virtual Group Group { get; set; }
+        public string Name { get; set; }
     }
 }
