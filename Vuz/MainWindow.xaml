@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vuz"
         mc:Ignorable="d"
-        Title="Главная страница" Height="450" Width="800">
+        Title="VuzApp" Height="450" Width="800">
     <Grid>  
         
         <Frame Name="frm"

@@ -9,6 +9,9 @@
       Title="AdminMenuPage">
 
     <Grid>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="0" Width="50">
+            <Image Source="\Images\free-icon-university-3495908.png"/>
+        </StackPanel>
         <StackPanel HorizontalAlignment="Right">
             <Button Name="btnBack"                        
                 Width="125"
